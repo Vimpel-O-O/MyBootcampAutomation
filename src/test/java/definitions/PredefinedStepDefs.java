@@ -1,4 +1,3 @@
-// Created by Viacheslav (Slava) Skryabin 04/01/2011
 package definitions;
 
 import io.cucumber.java.en.Given;
