@@ -61,7 +61,8 @@ Feature: MedicalCenter Test Scenarios
     Then I wait for element with xpath "//h1[contains(text(),'kupvi amoniteas')]" to be present
     Then element with xpath "//h1[contains(text(),'kupvi amoniteas')]" should contain text "kupvi amoniteas"
      #make an appointment
-  Then I click on element with xpath "//button[contains(text(),'Make an appointment')]"
+     Then I click on element with xpath "//button[contains(text(),'Make an appointment')]"
+
     Then I type "Doctor appointment Unique ID 1" into element with xpath " //textarea[@id='note']"
     Then I click on element with xpath "//select[@name='employee_id']"
     Then I wait for 1 sec
