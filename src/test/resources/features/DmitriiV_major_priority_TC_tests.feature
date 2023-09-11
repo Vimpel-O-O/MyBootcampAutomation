@@ -1,5 +1,7 @@
 #Author: Dmitrii V
-Feature: User Story 4
+#@majorUserStory4_9
+
+Feature: User Story 4 and 9
 
   Scenario: Specialist Last name text field can't be edited when First name text field is empty
     Given I open url "https://medicenter-qa2.vercel.app/"
@@ -105,6 +107,25 @@ Feature: User Story 4
     And I wait for element with xpath "//td[contains(text(),'Dr Strange')]/../td[3]/div/span" to be present
     Then I click on element with xpath "//td[contains(text(),'Dr Strange')]/../td[3]/div/span"
     And I wait for element with xpath "//button[contains(text(),'Save')]" to be present
+    Then I clear element with xpath "//input[@id='working_hours.monday.to']"
+    Then I type "18:00" into element with xpath "//input[@id='working_hours.monday.to']"
+    Then I click on element with xpath "//button[contains(text(),'Save')]"
+    Then I open url "https://medicenter-qa2.vercel.app/"
+    And I wait for element with xpath "//td[contains(text(),'Dr Strange')]/../td[3]/div/span" to be present
+    Then I click on element with xpath "//td[contains(text(),'Dr Strange')]/../td[3]/div/span"
+    And I wait for element with xpath "//button[contains(text(),'Save')]" to be present
+    Then element with xpath "//input[@id='working_hours.monday.to']" should have attribute "value" as "18:00"
+
+
+  Scenario: Edit specialist speciality
+    Given I open url "https://medicenter-qa2.vercel.app/"
+    Then I click on element with xpath "//button[contains(text(),'Login')]"
+    Then I type "administrator1@gmail.com" into element with xpath " //input[@id='email']"
+    Then I type "abc123" into element with xpath " //input[@id='password']"
+    Then I click on element with xpath "//button[@type='submit']"
+    And I wait for element with xpath "//td[contains(text(),'Dr Strange')]/../td[3]/div/span" to be present
+    Then I click on element with xpath "//td[contains(text(),'Dr Strange')]/../td[3]/div/span"
+    And I wait for element with xpath "//button[contains(text(),'Save')]" to be present
     Then I click on element with xpath "//option[contains(text(),'Neurologist')]"
     Then I click on element with xpath "//button[contains(text(),'Save')]"
     Then I open url "https://medicenter-qa2.vercel.app/"
@@ -144,3 +165,19 @@ Feature: User Story 4
     Then element with xpath "//td[contains(text(),'Doctor Strange')]" should be present
 
 
+
+  #@minorUserStory9
+    #
+#Feature User Story 9
+  Scenario:
+    Given I open url "https://medicenter-qa2.vercel.app/"
+    Then I click on element with xpath "//button[contains(text(),'Login')]"
+    Then I type "administrator1@gmail.com" into element with xpath " //input[@id='email']"
+    Then I type "abc123" into element with xpath " //input[@id='password']"
+    Then I click on element with xpath "//button[@type='submit']"
+    Then I wait for element with xpath "//h1[@class='font-medium text-xl']" to be present
+    And I wait for 1 sec
+    Then element with xpath "//h1[@class='font-medium text-xl']" should contain text "Mary Poppins"
+    Then I click on element with xpath "//button[@id='radix-:r6:-trigger-appointments']"
+    Then I click on element with xpath "//button[@type='button' and @title='month view']"
+    Then element with xpath "//td[@data-date='2023-08-11']//div[@class='fc-event-time' and contains(text(),'6:45')]" should be present
