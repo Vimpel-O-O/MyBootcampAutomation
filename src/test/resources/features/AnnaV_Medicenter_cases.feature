@@ -35,12 +35,12 @@ Feature: MedicalCenter Test Scenarios
     Then I wait for element with xpath <xpath6> to be present
     Then element with xpath <xpath6> should contain text <userName>
     Examples:
-      | emailAddress          | password    |   xpath6                                     | userName        |
-      | "kupvi@amoniteas.com" |  "123abc" |   "//h1[contains(text(),'kupvi amoniteas')]" | "kupvi amoniteas" |
-      | "patient1@gmail.com" |  "abc123" |   "//h1[contains(text(),'James Johnson')]" | "James Johnson" |
-      | "patient2@gmail.com" |  "abc123" |   "//h1[contains(text(),'Ben Simpson')]" | "Ben Simpson" |
-      | "kupvi@amoniteas.com" |  "incorrectpassword" |   "//h1[contains(text(),'kupvi amoniteas')]" | "kupvi amoniteas" |
-      | "kupvi@amoniteas.com" |  "123abc" |   "//h1[contains(text(),'kupvi amoniteas')]" | "incorrect name" |
+      | emailAddress          | password            | xpath6                                     | userName          |
+      | "kupvi@amoniteas.com" | "123abc"            | "//h1[contains(text(),'kupvi amoniteas')]" | "kupvi amoniteas" |
+      | "patient1@gmail.com"  | "abc123"            | "//h1[contains(text(),'James Johnson')]"   | "James Johnson"   |
+      | "patient2@gmail.com"  | "abc123"            | "//h1[contains(text(),'Ben Simpson')]"     | "Ben Simpson"     |
+      | "kupvi@amoniteas.com" | "incorrectpassword" | "//h1[contains(text(),'kupvi amoniteas')]" | "kupvi amoniteas" |
+      | "kupvi@amoniteas.com" | "123abc"            | "//h1[contains(text(),'kupvi amoniteas')]" | "incorrect name"  |
 
 
   @medicenter3
@@ -61,19 +61,29 @@ Feature: MedicalCenter Test Scenarios
     Then I wait for element with xpath "//h1[contains(text(),'kupvi amoniteas')]" to be present
     Then element with xpath "//h1[contains(text(),'kupvi amoniteas')]" should contain text "kupvi amoniteas"
      #make an appointment
-     Then I click on element with xpath "//button[contains(text(),'Make an appointment')]"
+    Then I click on element with xpath "//button[contains(text(),'Make an appointment')]"
 
-    Then I type "Doctor appointment Unique ID 1" into element with xpath " //textarea[@id='note']"
+    Then I type "Doctor appointment Unique ID 11" into element with xpath " //textarea[@id='note']"
     Then I click on element with xpath "//select[@name='employee_id']"
     Then I wait for 1 sec
     Then I click on element with xpath "//select[@name='employee_id']/..//option[6]"
-    And I type "09/08/2023" into element with xpath "//input[@id='date']"
+    And I type "09/15/2023" into element with xpath "//input[@id='date']"
     And I click on element with xpath "//button[contains(text(),'08:15 AM')]"
     Then I wait for 1 sec
     Then I click on element with xpath "//button[contains(text(),'Save')]"
-    Then I wait for 10 sec
+    Then I wait for 2 sec
+    #verification
+    Then I wait for element with xpath "//p[contains(text(),'Doctor appointment Unique ID 11')]" to be present
+    #delete an appointment
+    Then element with xpath "//p[contains(text(),'Doctor appointment Unique ID 11')]/ancestor::article/div[2]/span" should be present
+    Then I click on element with xpath "//p[contains(text(),'Doctor appointment Unique ID 11')]/ancestor::article/div[2]/span"
+    Then element with xpath "//h2[contains(text(),'Are you sure you want to cancel appointment?')]" should contain text "Are you sure you want to cancel appointment?"
+    And I click on element with xpath "//button[contains(text(),'Cancel appointment')]"
+    Then I wait for 2 sec
+    #verification
+    Then element with xpath "//p[contains(text(),'Doctor appointment Unique ID 11')]" should not be present
 
-    
+
 
 
     
