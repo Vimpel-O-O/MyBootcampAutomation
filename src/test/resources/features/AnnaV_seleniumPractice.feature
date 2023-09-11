@@ -3,7 +3,7 @@
 @medicenter
 Feature: MedicalCenter Test Scenarios
 
-  @medicenter1
+  @medicenter1 @regression
   Scenario: Login as patient
     Given I open url "https://medicenter-qa2.vercel.app/"
     Then I should see page title as "Medicenter"
@@ -24,3 +24,4 @@ Feature: MedicalCenter Test Scenarios
   Scenario: Login as patient using Selenium WebDriver methods
     Given AV launch "MedicenterV2"
     Then AV page title is "Medicenter"
+    Then AV click on "Login" button
