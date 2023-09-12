@@ -12,7 +12,8 @@
       Then element with xpath "//button[@id='proceed-button']" should be present
       And I click on element with xpath "//button[@id='proceed-button']"
       And I wait for 2 sec
-      Then element with xpath "//input[@name='q']" should be present
+      Then I switch to iframe with xpath "//iframe[@name='googleSearchFrame']"
+      Then element with xpath "//*[contains(text(),'QA')]" should contain text "QA"
 
     Scenario: Search Engine for https://gibiru.com/
       Given I open url "https://gibiru.com/"
