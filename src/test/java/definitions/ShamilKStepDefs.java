@@ -4,6 +4,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import io.cucumber.java.Scenario;
 
 import static support.TestContext.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -100,4 +102,21 @@ public class ShamilKStepDefs {
     public void skVerifyTitleName(String title) {
         assertThat(getDriver().getTitle()).isEqualTo(title);
     }
+
+    @Then("SK I verify that {string}'s appointment data by xpath should not be present")
+    public void skIVerifyThatPatientNameSAppointmentDataByXpathShouldNotBePresent(String user_name) {
+        assertThat(getDriver().findElements(By.xpath("//td[@data-date='2023-09-11']//div[text()='"+ user_name + "']"))).hasSize(0);
+    }
+
+    @Then("SK If present I click on {string} element by xpath")
+    public void skIfPresentIClickOnElementByXpath(String xpath) {
+        java.util.List<WebElement> element = getDriver().findElements(By.xpath(xpath));
+        if (element.isEmpty()) {
+            System.out.println("Their is not such element");
+        } else {
+            getDriver().findElement(By.xpath(xpath)).click();
+        }
+    }
 }
+
+
