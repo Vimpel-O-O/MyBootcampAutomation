@@ -40,3 +40,15 @@ Feature: MedicalAppCenter Test Scenarios
       | "wrongEmail@com.com" | "123456"        | "Olga Test1"    | "//h1[contains(text(),'Olga Test1')]"    |
       | "yna2106@mrshok.xyz" | "wrongPassword" | "Olga Test1"    | "//h1[contains(text(),'Olga Test1')]"    |
 
+  @macenter3
+  Scenario: Create an appointment
+    Given OS open url "MedicenterV2"
+    Then OS see page title contains "Medi"
+    Then OS click on elememt with xpath "//button[contains(text(),'Login')]"
+    Then OS wait for element with xpath "//a[contains(text(),'Back to home')]" to be present
+#  login as a patient
+    Then OS type "yna2106@mrshok.xyz" into element with xpath "//input[@id='email']"
+    Then OS type "123456" into element with xpath "//input[@id='password']"
+    Then OS click on element with xpath "//button[contains(text(),'Sign in')]"
+
+#    Then I wait for 3 sec
