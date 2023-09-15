@@ -8,11 +8,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.File;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Iterator;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class PredefinedStepDefs {
@@ -24,11 +26,6 @@ public class PredefinedStepDefs {
     public void iResizeWindowToAnd(int width, int height) {
         Dimension dimension = new Dimension(width, height);
         getDriver().manage().window().setSize(dimension);
-    }
-
-    @Then("I wait for {int} sec")
-    public void iWaitForSec(int sec) throws Exception {
-        Thread.sleep(sec * 1000);
     }
 
     @When("I maximize window")
