@@ -5,12 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import io.cucumber.java.Scenario;
 
 import static support.TestContext.getDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ShamilKStepDefs {
+public class MyStepDefs {
     @Given("SK launch {string}")
     public void skLaunch(String sAppVersion) {
         switch(sAppVersion) {
@@ -56,6 +55,11 @@ public class ShamilKStepDefs {
     @Then("SK I type {string} into {string} element found by xpath")
     public void iTypeIntoElementFoundByXpath(String text, String xpath) {
         getDriver().findElement(By.xpath(xpath)).sendKeys(text);
+    }
+
+    @Then("SK I type today's date into date field found by xpath")
+    public void iTypeIntoElementFoundByXpath() {
+        getDriver().findElement(By.xpath(MyElmntsLibrary.date_field)).sendKeys(MyElmntsLibrary.date);
     }
 
     @Then("SK I select {string} element by xpath")
@@ -117,6 +121,9 @@ public class ShamilKStepDefs {
             getDriver().findElement(By.xpath(xpath)).click();
         }
     }
+
+    @Then("I wait for {int} sec")
+    public void iWaitForSec(int sec) throws Exception {
+        Thread.sleep(sec * 1000);
+    }
 }
-
-
