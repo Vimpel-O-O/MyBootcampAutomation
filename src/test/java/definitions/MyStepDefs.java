@@ -75,12 +75,12 @@ public class MyStepDefs {
 
     @Then("SK I verify the {string}'s appointment data by xpath")
     public void skIVerifyTheAppointmentWithData(String user_name) {
-        assertThat(getDriver().findElements(By.xpath("//td[@data-date='2023-09-11']//div[text()='"+ user_name + "']"))).hasSize(1);
+        assertThat(getDriver().findElements(By.xpath("//td[" + MyElmntsLibrary.date_atribute + "]//div[text()='"+ user_name + "']"))).hasSize(1);
     }
 
     @And("SK I delete the {string}'s appointment")
     public void skIDeleteTheAppointment(String user_name) throws InterruptedException {
-        getDriver().findElement(By.xpath("//td[@data-date='2023-09-11']//div[text()='" + user_name + "']/parent::a")).click();
+        getDriver().findElement(By.xpath("//td[" + MyElmntsLibrary.date_atribute + "]//div[text()='" + user_name + "']/parent::a")).click();
         Thread.sleep(1000);
         getDriver().findElement(By.xpath("//button[contains(text(), 'Cancel appointment')]")).click();
     }
